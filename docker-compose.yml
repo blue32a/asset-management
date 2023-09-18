@@ -16,3 +16,32 @@ services:
     volumes:
       - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - .:/var/www/html
+
+  mysql:
+    build: ./.docker/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: examplepw
+      MYSQL_DATABASE: asset_management
+      MYSQL_USER: asset_management
+      MYSQL_PASSWORD: RrmmZ9rvv!Zkp5CP
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: examplepw
+    volumes:
+      - phpmyadmin-session:/sessions
+
+volumes:
+  mysql-data:
+  phpmyadmin-session:

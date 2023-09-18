@@ -10,6 +10,11 @@
                         <i class="nav-icon fa-solid fa-house"></i><p>Home</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('summary') }}" @class(['nav-link', 'active' => Route::currentRouteName() === 'summary'])>
+                        <i class="nav-icon fas fa-file"></i><p>Summary</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
